@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.0.0, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+  <meta name="description" content="">
+  <title>Квиз</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/268568/assets/bootstrap/css/bootstrap.min.css?rnd=1671033588908">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/268568/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1671033588908">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/268568/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1671033588908">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/268568/assets/dropdown/css/style.css?rnd=1671033588908">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/268568/assets/socicon/css/styles.css?rnd=1671033588908">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/268568/assets/theme/css/style.css?rnd=1671033588908">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/268568/assets/css/mbr-additional.css?rnd=1671033588908" type="text/css">
+  
+  
+  
+  
+</head>
+<body>
+  
+  <section class="menu menu1 cid-tpaBigIpH3" once="menu" id="menu1-k">
+    
+
+    <nav class="navbar navbar-dropdown navbar-fixed-top collapsed">
+        <div class="container">
+            <div class="navbar-brand">
+                
+                
+            </div>
+            
+            
+        </div>
+    </nav>
+</section>
+
+<section class="header9 cid-tq0slBLeCt" id="header9-n">
+
+    
+
+    
+
+    <div class="text-center container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9">
+                <div class="image-wrap mb-4">
+                    <img src="assets/images/app2-h_lbnu2sff.jpg" alt="Mobirise">
+                </div>
+                <h1 class="mbr-section-title mbr-fonts-style mb-3 display-2" id = 'QUESTION'><strong>Question placeholder</strong></h1>
+                <div class="mbr-section-btn mt-3" id='ANSWERS'>
+				</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+	<script src="assets/web/assets/jquery/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/smoothscroll/smooth-scroll.js"></script>
+	<script src="assets/ytplayer/index.js"></script>
+	<script src="assets/dropdown/js/navbar-dropdown.js"></script>
+	<script src="assets/theme/js/script.js"></script>
+  
+	<script>
+		var server = "http://127.0.0.1:9090/"
+		async function get_question_and_answers()
+		{		
+			let url = server + "get_question/"
+					
+			let response = await fetch(url);
+
+			if (response.ok)
+			{ 
+				let json = await response.json();
+				return json;
+			} 
+			else 
+			{
+				alert("Ошибка HTTP: " + response.status);
+			}
+					
+		}
+				
+		
+	</script>
+	
+
+	<script>	
+		get_question_and_answers().then
+		(
+			response =>
+			{
+				console.log("Получен вопрос и ответы у сервера");
+				let code = ""
+				for (let key in response[1])
+				{
+					if (key === response[2])
+					{
+						code = code + '<a class="btn btn-white display-4" href="cpage.html">'+response[1][key]+'</a>'
+					}
+					else
+					{
+						code = code + '<a class="btn btn-white display-4" href="">'+response[1][key]+'</a>'
+					}
+				}
+				document.getElementById('ANSWERS').innerHTML = code;
+				document.getElementById('QUESTION').innerHTML = response[0];
+			},
+		error => alert(`Rejected: ${error}`)
+		);
+	</script>
+  
+</body>
+</html>
