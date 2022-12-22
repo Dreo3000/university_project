@@ -15,9 +15,6 @@ class Root(object):
     def get_question(self):
         return quizgen.get_data()
 
-    def check_correctanswer(self):
-        return None
-
 
 if __name__ == '__main__':
     conf = {

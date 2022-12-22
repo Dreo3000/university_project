@@ -46,8 +46,8 @@
     <div class="text-center container">
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-9">
-                <div class="image-wrap mb-4">
-                    <img src="assets/images/app2-h_lbnu2sff.jpg" alt="Mobirise">
+                <div class="image-wrap mb-4" id='PICTURE'>
+                    
                 </div>
                 <h1 class="mbr-section-title mbr-fonts-style mb-3 display-2" id = 'QUESTION'><strong>Question placeholder</strong></h1>
                 <div class="mbr-section-btn mt-3" id='ANSWERS'>
@@ -109,6 +109,7 @@
 				}
 				document.getElementById('ANSWERS').innerHTML = code;
 				document.getElementById('QUESTION').innerHTML = response[0];
+				document.getElementById('PICTURE').innerHTML = '<img src='+response[3]+'>';
 			},
 		error => alert(`Rejected: ${error}`)
 		);
